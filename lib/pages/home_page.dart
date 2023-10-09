@@ -10,7 +10,12 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Catlog App"),
+          title: const Text(
+            "Catlog App",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
         ),
         body: const Center(
           child: Text("Hello"),

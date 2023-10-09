@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/utils/my_routes.dart';
+import 'package:flutter_application_1/widgets/themes.dart';
 import 'pages/home_page.dart';
 
 void main() {
@@ -17,7 +18,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: const HomePage(),
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      theme: MyTheme.lightTheme(context),
+      darkTheme: MyTheme.darkTheme(context),
+
       initialRoute: MyRoute.homeRoute,
       routes: {
         "/": (context) => const LoginPage(),
