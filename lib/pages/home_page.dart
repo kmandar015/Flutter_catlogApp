@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/widgets/items.dart';
+// import 'package:flutter_application_1/widgets/items.dart';
 
 import '../models/catlog.dart';
 import '../widgets/my_drawer.dart';
@@ -22,15 +22,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   loadData() async {
-    var CatlogJson = await rootBundle.loadString('assets/files/catalog.json');
+    await Future.delayed(
+      const Duration(seconds: 2),
+    );
+    var catlogJson = await rootBundle.loadString('assets/files/catalog.json');
     // print(CatlogJson);
-    final decodedData = jsonDecode(CatlogJson);
+    final decodedData = jsonDecode(catlogJson);
     var productData = decodedData["products"];
+    Catlog.items =
+        List.from(productData).map<Item>((item) => Item.fromMap(item)).toList();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    final dummyList = List.generate(10, (index) => Catlog.items[0]);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -43,14 +48,31 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: ListView.builder(
-            itemCount: dummyList.length,
-            itemBuilder: (context, index) {
-              return ItemWidget(
-                item: dummyList[index],
-              );
-            },
-          ),
+          child: (Catlog.items.isNotEmpty)
+              ? GridView.builder(
+                  itemCount: Catlog.items.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    crossAxisCount: 2,
+                  ),
+                  itemBuilder: (context, index) {
+                    final item = Catlog.items[index];
+                    return Card(
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: GridTile(
+                        header: Text(item.name),
+                        footer: Text(item.price.toString()),
+                        child: Image.network(item.image),
+                      ),
+                    );
+                  })
+              : const Center(
+                  child: CircularProgressIndicator(),
+                ),
         ),
         drawer: const MyDrawer(),
       ),
