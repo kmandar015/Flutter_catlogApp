@@ -1,8 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
 import 'package:flutter_application_1/models/catlog.dart';
 import 'package:flutter_application_1/widgets/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class HomeDetailPage extends StatelessWidget {
   final Item catalog;
@@ -19,13 +18,50 @@ class HomeDetailPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
+            SizedBox(
+              height: 250,
               child: Hero(
                 tag: Key(
                   catalog.id.toString(),
                 ),
-                child: Image.network(catalog.image),
+                child: Image.network(
+                  catalog.image,
+                ),
+              ),
+            ),
+            Expanded(
+              child: VxArc(
+                height: 40,
+                edge: VxEdge.top,
+                arcType: VxArcType.convey,
+                child: Container(
+                  width: context.screenHeight,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 64.0,
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          catalog.name,
+                          style: TextStyle(
+                            color: MyTheme.darkBluishColor,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          catalog.desc,
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: MyTheme.darkBluishColor,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
