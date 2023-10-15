@@ -72,7 +72,7 @@ class CatalogItem extends StatelessWidget {
                           ),
                         ),
                         child: const Text(
-                          "BUY",
+                          "Add to cart",
                           style: TextStyle(fontSize: 10.0),
                         ),
                       )

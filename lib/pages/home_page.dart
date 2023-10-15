@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/utils/my_routes.dart';
 import 'package:flutter_application_1/widgets/home_widgets/catalog_list.dart';
-import 'package:flutter_application_1/widgets/themes.dart';
+// import 'package:flutter_application_1/widgets/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
 import '../models/catlog.dart';
 import '../widgets/home_widgets/catalog_header.dart';
 
@@ -28,15 +30,23 @@ class _HomePageState extends State<HomePage> {
     // print(CatlogJson);
     final decodedData = jsonDecode(catlogJson);
     var productData = decodedData["products"];
-    Catlog.items =
-        List.from(productData).map<Item>((item) => Item.fromMap(item)).toList();
+    Catlog.items = List.from(productData)
+        .map<Item>(
+          (item) => Item.fromMap(item),
+        )
+        .toList();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.canvasColor,
+      floatingActionButton: FloatingActionButton(
+        // backgroundColor: context.theme.buttonTheme.buttonColor,
+        onPressed: () => Navigator.pushNamed(context, MyRoute.cartRoute),
+        child: const Icon(Icons.shopping_cart_outlined),
+      ),
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(32),

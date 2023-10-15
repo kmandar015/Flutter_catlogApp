@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/cart_page.dart';
 import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/utils/my_routes.dart';
 import 'package:flutter_application_1/widgets/themes.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'pages/home_page.dart';
 
 void main() {
@@ -18,15 +20,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: const HomePage(),
-      theme: MyTheme.lightTheme(context),
-      darkTheme: MyTheme.darkTheme(context),
+      theme: MyTheme.darkTheme(context),
+
+      // darkTheme: MyTheme.darkTheme(context),
 
       initialRoute: MyRoute.homeRoute,
       routes: {
         "/": (context) => const LoginPage(),
         MyRoute.homeRoute: (context) => const HomePage(),
         MyRoute.loginRoute: (context) => const LoginPage(),
-        // MyRoute.homeDetails:(context)=> const HomeDetailPage(catalog: catalog);
+        MyRoute.cartRoute: (context) => const CartPage(),
       },
     );
   }
