@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../themes.dart';
 
 class CatalogHeader extends StatelessWidget {
   const CatalogHeader({super.key});
@@ -14,15 +13,14 @@ class CatalogHeader extends StatelessWidget {
           "Catalog App",
           style: TextStyle(
             fontSize: 40,
-            color: MyTheme.darkBluishColor,
+            // color: Theme.of(context).colorScheme.secondary,
             fontWeight: FontWeight.bold,
             fontFamily: GoogleFonts.poppins().fontFamily,
           ),
         ),
-        Text(
+        const Text(
           "Trending products",
           style: TextStyle(
-            color: MyTheme.darkBluishColor,
             fontSize: 20,
           ),
         ),

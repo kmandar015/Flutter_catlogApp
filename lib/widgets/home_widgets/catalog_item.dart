@@ -17,9 +17,9 @@ class CatalogItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 15.0, bottom: 15),
       child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.elliptical(30, 20)),
-          color: Colors.white,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.elliptical(30, 20)),
+          color: Theme.of(context).cardColor,
         ),
         height: 150,
         width: 150,
@@ -40,7 +40,7 @@ class CatalogItem extends StatelessWidget {
                     catalog.name,
                     style: TextStyle(
                       fontFamily: GoogleFonts.poppins().fontFamily,
-                      color: MyTheme.darkBluishColor,
+                      // color: MyTheme.darkBluishColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -48,7 +48,7 @@ class CatalogItem extends StatelessWidget {
                     catalog.desc,
                     style: TextStyle(
                       fontFamily: GoogleFonts.poppins().fontFamily,
-                      color: MyTheme.darkBluishColor,
+                      // color: MyTheme.darkBluishColor,
                     ),
                   ),
                   ButtonBar(
@@ -73,7 +73,7 @@ class CatalogItem extends StatelessWidget {
                         ),
                         child: const Text(
                           "Add to cart",
-                          style: TextStyle(fontSize: 10.0),
+                          style: TextStyle(fontSize: 10.0, color: Colors.white),
                         ),
                       )
                     ],
