@@ -1,4 +1,4 @@
-# flutter_application_1
+# Flutter Catlog App
 
 A new Flutter project.
 
